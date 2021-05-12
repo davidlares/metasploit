@@ -11,7 +11,7 @@ class Discovery:
         self.logger = logger
 
     # Scan for open ports (and services if specified) on given host.
-    def get_ports(self, host: str, services_scan=True, ports='1-65535', opts='-Pn', speed=4):
+    def get_ports(self, host, services_scan=True, ports='1-65535', opts='-Pn', speed=4):
         nm = PortScanner()
         opts = '{} -T{}'.format(opts, speed)
         if services_scan:
@@ -24,7 +24,7 @@ class Discovery:
         return ports_details
 
     # Scan for OS details of provided hosts.
-    def get_os(self, host: str, opts='-Pn', speed=4, sudo=True) -> Dict:
+    def get_os(self, host, opts='-Pn', speed=4, sudo=True):
         nm = PortScanner()
         results = nm.scan(hosts=host, arguments='-O {} -T{}'.format(opts, speed), sudo=sudo)
         host_details = results['scan']
@@ -32,15 +32,15 @@ class Discovery:
         return host_details
 
     # Run discovery functions on the specified host.
-    def do_discovery(self, host: str, ports='1-65535', opts='-Pn', sudo=False) -> Tuple:
+    def do_discovery(self, host, ports='1-65535', opts='-Pn', sudo=False):
         nm = PortScanner()
-        self.logger.info('Checking to make sure host {} is reachable.'.format(host))
+        self.logger.info('[!] Checking to make sure host {} is reachable.'.format(host))
         results = nm.scan(hosts=host, arguments='-PE -n -sn')
         if len(list(results['scan'].keys())) < 1:
-            self.logger.error('Error, I was unable to reach host {}.'.format(host))
+            self.logger.error('[-] Error, I was unable to reach host {}.'.format(host))
             return None, None
-        self.logger.info('Scanning ports {} on host {}.'.format(ports, host))
+        self.logger.info('[!] Scanning ports {} on host {}.'.format(ports, host))
         ports_details = self.get_ports(host, ports=ports, opts=opts)
-        self.logger.info('Determining OS of host {}.'.format(host))
+        self.logger.info('[+] Determining OS of host {}.'.format(host))
         os_details = self.get_os(host, opts=opts, sudo=sudo)
         return ports_details, os_details
