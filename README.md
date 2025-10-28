@@ -1,10 +1,10 @@
 # Python's Metasploit concept
 
-The Metasploit Framework is a tool used to design and execute exploits and attacks with the help of a ton of modules in an oriented offensive security approach. This is a must-use tool in pen-testing activities and it's very versatile due to his many features.
+The Metasploit Framework is a tool used to design and execute exploits and attacks with the help of a ton of modules in an oriented offensive security approach. This is a must-use tool in pen-testing activities and it's very versatile due to its many features.
 
 The idea of implementing this tool is to figure out a way of removing all the complexity of the framework without needing to learn Ruby (the official language of the Metasploit framework).
 
-The `msf` folder has two modules, the `exploits` and the `libs`. These contain all the whole functionality of this script.
+The `msf` folder has two modules: the `exploits` and the `libs`. These contain all the functionality of this script.
 
 The exploits included are:
 
@@ -58,12 +58,10 @@ Run: `python metasploit.py`
 > exploit
 ```
 
-This automatically will trigged the built-in reverse shell
+This automatically will trigger the built-in reverse shell
 
 ## Credits
-
- - [David E Lares](https://twitter.com/davidlares3)
+[David Lares S](https://davidlares.com)
 
 ## License
-
- - [MIT](https://opensource.org/licenses/MIT)
+[MIT](https://opensource.org/licenses/MIT)
